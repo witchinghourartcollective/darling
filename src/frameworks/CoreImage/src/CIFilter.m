@@ -34,11 +34,14 @@ NSString * const kCIOutputImageKey = @"outputImage";
 NSString * const kCIApplyOptionDefinition = @"definition";
 
 NSString * const kCIAttributeClass = @"class";
+NSString * const kCIAttributeDefault = @"default";
 NSString * const kCIAttributeDisplayName = @"displayName";
 NSString * const kCIAttributeFilterDisplayName = @"filterDisplayName";
 NSString * const kCIAttributeFilterName = @"filterName";
 NSString * const kCIAttributeMax = @"max";
 NSString * const kCIAttributeMin = @"min";
+NSString * const kCIAttributeSliderMax = @"sliderMax";
+NSString * const kCIAttributeSliderMin = @"sliderMin";
 NSString * const kCIAttributeType = @"type";
 
 NSString * const kCIAttributeTypeAngle = @"angle";

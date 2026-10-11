@@ -21,6 +21,10 @@
 
 extern NSString *const kCIInputRadiusKey;
 
+extern NSString *const kCIAttributeDefault;
+extern NSString *const kCIAttributeSliderMax;
+extern NSString *const kCIAttributeSliderMin;
+
 @interface CIFilter : NSObject
 
 @end

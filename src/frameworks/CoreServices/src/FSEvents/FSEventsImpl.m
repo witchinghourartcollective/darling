@@ -26,6 +26,7 @@
 #include <darling/emulation/linux_premigration/ext/sys/inotify.h>
 
 static dispatch_queue_t g_fsEventsQueue = NULL;
+FSEventStreamEventId DarlingCurrentEventId = 0;
 
 static void rlPerform(void* info)
 {
@@ -186,6 +187,12 @@ static void rlPerform(void* info)
 	return _lastEventID;
 }
 
+-(void)flushSync
+{
+	if (g_fsEventsQueue)
+		dispatch_sync(g_fsEventsQueue, ^{});
+}
+
 -(void)_readEvents
 {
 	const size_t bytes = sizeof(struct inotify_event) + 4096 + 1;
@@ -260,7 +267,8 @@ static void rlPerform(void* info)
 	_flagArray[newCount-1] = flags;
 
 	_idArray = (FSEventStreamEventId*) realloc(_idArray, sizeof(*_idArray) * newCount);
-	_idArray[newCount-1] = ++_lastEventID;
+	_idArray[newCount-1] = __atomic_add_fetch(&DarlingCurrentEventId, 1, __ATOMIC_RELAXED);
+	_lastEventID = _idArray[newCount-1];
 }
 
 -(void)_dispatchEvents

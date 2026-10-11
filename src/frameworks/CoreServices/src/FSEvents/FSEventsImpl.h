@@ -25,6 +25,8 @@
 #include <FSEvents/FSEvents.h>
 #include <dispatch/dispatch.h>
 
+extern FSEventStreamEventId DarlingCurrentEventId;
+
 @interface FSEventsImpl : NSObject
 {
 	NSArray<NSString*>* _pathsToWatch;
@@ -61,6 +63,7 @@
 -(void)start;
 -(void)stop;
 -(FSEventStreamEventId)lastEventID;
+-(void)flushSync;
 -(void)_doCallback;
 
 @end

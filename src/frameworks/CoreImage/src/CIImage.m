@@ -19,6 +19,8 @@
 
 #import <CoreImage/CIImage.h>
 
+const CIFormat kCIFormatARGB8 = 0;
+
 @implementation CIImage
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {

@@ -94,6 +94,23 @@ Boolean FSEventStreamStart(FSEventStreamRef streamRef)
 	return TRUE;
 }
 
+FSEventStreamEventId FSEventStreamFlushAsync(FSEventStreamRef streamRef)
+{
+	return [((FSEventsImpl*) streamRef) lastEventID];
+}
+
+void FSEventStreamFlushSync(FSEventStreamRef streamRef)
+{
+	// Darling's inotify event source runs on its serial FSEvents queue. A
+	// synchronous barrier drains callbacks already queued for this stream.
+	[((FSEventsImpl*) streamRef) flushSync];
+}
+
+FSEventStreamEventId FSEventsGetCurrentEventId(void)
+{
+	return __atomic_load_n(&DarlingCurrentEventId, __ATOMIC_RELAXED);
+}
+
 void FSEventStreamStop(FSEventStreamRef streamRef)
 {
 	[((FSEventsImpl*) streamRef) stop];
