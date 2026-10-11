@@ -23,6 +23,12 @@ TISInputSourceRef TISCopyCurrentKeyboardInputSource(void)
 	return TISCopyCurrentKeyboardLayoutInputSource();
 }
 
+TISInputSourceRef TISCopyInputMethodKeyboardLayoutOverride(void)
+{
+	// Darling does not implement input-method-specific keyboard overrides.
+	return NULL;
+}
+
 TISInputSourceRef TISCopyCurrentKeyboardLayoutInputSource(void)
 {
 	NSDisplay* display = [NSClassFromString(@"NSDisplay") currentDisplay];

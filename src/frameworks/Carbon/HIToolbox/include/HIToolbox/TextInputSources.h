@@ -21,6 +21,7 @@ typedef struct __TISInputSource* TISInputSourceRef;
 
 extern TISInputSourceRef TISCopyCurrentKeyboardLayoutInputSource(void);
 extern TISInputSourceRef TISCopyCurrentKeyboardInputSource(void);
+extern TISInputSourceRef TISCopyInputMethodKeyboardLayoutOverride(void);
 
 extern void* TISGetInputSourceProperty(TISInputSourceRef inputSourceRef, CFStringRef key);
 
